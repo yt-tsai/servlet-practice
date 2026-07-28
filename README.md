@@ -60,6 +60,8 @@ http://localhost:8080/servlet-practice/hello
 
 ## Result
 
+### HelloServlet
+
 Access:
 
 ```text
@@ -70,6 +72,27 @@ Displays:
 
 ```text
 Hello Servlet
-
 My first Servlet on Mac!
 ```
+
+### MVC Servlet
+
+Access:
+
+```text
+http://localhost:8080/servlet-practice/user
+```
+
+Displays:
+
+```text
+Hello Peter
+```
+
+## MVC Flow
+
+Browser
+→ Servlet Controller
+→ Request Scope (setAttribute)
+→ JSP View
+→ EL Expression (${username})
