@@ -13,6 +13,11 @@ My Java Web learning project using Servlet, JSP, Maven, and Tomcat.
 ## Current Features
 
 - HelloServlet implementation
+- MVC Servlet example
+- HTML Form handling
+- Request Scope
+- JSP View
+- EL Expression
 - Maven Web Application
 - WAR deployment
 - Tomcat deployment
@@ -27,9 +32,14 @@ servlet-practice
     └── main
         ├── java
         │   └── com/example
-        │       └── HelloServlet.java
+        │       ├── HelloServlet.java
+        │       ├── UserServlet.java
+        │       └── UserFormServlet.java
         └── webapp
             ├── index.jsp
+            ├── form.html
+            ├── user.jsp
+            ├── result.jsp
             └── WEB-INF
                 └── web.xml
 ```
@@ -95,4 +105,37 @@ Browser
 → Servlet Controller
 → Request Scope (setAttribute)
 → JSP View
-→ EL Expression (${username})
+→ EL Expression
+
+## Form Handling
+
+### Flow
+
+Browser
+→ HTML Form (POST)
+→ Servlet Controller
+→ request.getParameter()
+→ request.setAttribute()
+→ JSP View
+→ EL Expression
+
+### Example
+
+Access:
+
+```text
+http://localhost:8080/servlet-practice/form.html
+```
+
+Input:
+
+```text
+Peter
+```
+
+Result:
+
+```text
+Hello Peter
+Welcome to Servlet World!!
+```
