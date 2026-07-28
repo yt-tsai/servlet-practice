@@ -2,6 +2,8 @@ package com.example;
 
 import java.io.IOException;
 
+import com.example.model.User;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,9 +19,19 @@ public class UserFormServlet extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        String username = request.getParameter("username");
+        String name = request.getParameter("username");
+        int age = 0;
 
-        request.setAttribute("username", username);
+        try {
+            age = Integer.parseInt(request.getParameter("age"));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+
+        }
+
+        User user = new User(name, age);
+
+        request.setAttribute("user", user);
 
         request.getRequestDispatcher("/result.jsp")
                 .forward(request, response);

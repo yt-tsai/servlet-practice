@@ -12,12 +12,23 @@ My Java Web learning project using Servlet, JSP, Maven, and Tomcat.
 
 ## Current Features
 
+### Servlet / MVC
+
 - HelloServlet implementation
 - MVC Servlet example
-- HTML Form handling
+- UserFormServlet
+- JavaBean Model (User class)
 - Request Scope
+
+### JSP / Form Handling
+
 - JSP View
 - EL Expression
+- HTML Form handling
+- POST Form
+
+### Deployment
+
 - Maven Web Application
 - WAR deployment
 - Tomcat deployment
@@ -31,10 +42,13 @@ servlet-practice
 └── src
     └── main
         ├── java
-        │   └── com/example
-        │       ├── HelloServlet.java
-        │       ├── UserServlet.java
-        │       └── UserFormServlet.java
+        │   ├── com/example
+        │   │   ├── HelloServlet.java
+        │   │   ├── UserServlet.java
+        │   │   └── UserFormServlet.java
+        │   │
+        │   └── com/example/model
+        │       └── User.java
         └── webapp
             ├── index.jsp
             ├── form.html
@@ -103,6 +117,7 @@ Hello Peter
 
 Browser
 → Servlet Controller
+→ Model (User)
 → Request Scope (setAttribute)
 → JSP View
 → EL Expression
@@ -115,6 +130,7 @@ Browser
 → HTML Form (POST)
 → Servlet Controller
 → request.getParameter()
+→ Create User Object
 → request.setAttribute()
 → JSP View
 → EL Expression
@@ -130,7 +146,8 @@ http://localhost:8080/servlet-practice/form.html
 Input:
 
 ```text
-Peter
+Name: Peter
+Age: 42
 ```
 
 Result:
@@ -138,4 +155,8 @@ Result:
 ```text
 Hello Peter
 Welcome to Servlet World!!
+
+User information:
+Name: Peter
+Age: 42
 ```
