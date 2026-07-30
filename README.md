@@ -1,38 +1,62 @@
 # Servlet Practice
 
-My Java Web learning project using Servlet, JSP, Maven, and Tomcat.
+My Java Web learning project using Servlet, JSP, Maven, and Apache Tomcat.
+
+## Overview
+
+This project demonstrates the fundamental concepts of Java Web development using Servlet, JSP, Maven, and Apache Tomcat.
+
+It includes MVC architecture, form handling, JavaBean, Filter, Listener, and WAR deployment.
+
+---
 
 ## Environment
 
 - Java 21
 - Maven 3.9.16
-- Tomcat 11
+- Apache Tomcat 11
 - VS Code
 - macOS
+
+---
 
 ## Current Features
 
 ### Servlet / MVC
 
-- HelloServlet implementation
-- MVC Servlet example
+- HelloServlet
+- UserServlet
 - UserFormServlet
-- JavaBean Model (User class)
+- JavaBean (User)
 - Request Scope
 
-### JSP / Form Handling
+### JSP
 
 - JSP View
-- EL Expression
-- HTML Form handling
-- POST Form
+- EL (Expression Language)
+- HTML Form
+- POST Form Handling
+
+### Filter
+
+- CharacterEncodingFilter
+- UTF-8 Request Encoding
+- `@WebFilter("/*")`
+- `chain.doFilter()`
+
+### Listener
+
+- AppLifecycleListener
+- `@WebListener`
+- Application Lifecycle Monitoring
 
 ### Deployment
 
 - Maven Web Application
-- WAR deployment
-- Tomcat deployment
-- Browser access test
+- WAR Packaging
+- Apache Tomcat 11 Deployment
+
+---
 
 ## Project Structure
 
@@ -42,13 +66,17 @@ servlet-practice
 └── src
     └── main
         ├── java
-        │   ├── com/example
-        │   │   ├── HelloServlet.java
-        │   │   ├── UserServlet.java
-        │   │   └── UserFormServlet.java
-        │   │
-        │   └── com/example/model
-        │       └── User.java
+        │   └── com
+        │       └── example
+        │           ├── HelloServlet.java
+        │           ├── UserServlet.java
+        │           ├── UserFormServlet.java
+        │           ├── filter
+        │           │   └── CharacterEncodingFilter.java
+        │           ├── listener
+        │           │   └── AppLifecycleListener.java
+        │           └── model
+        │               └── User.java
         └── webapp
             ├── index.jsp
             ├── form.html
@@ -58,9 +86,67 @@ servlet-practice
                 └── web.xml
 ```
 
+---
+
+## MVC Flow
+
+```text
+Browser
+    │
+    ▼
+Servlet Controller
+    │
+    ▼
+Model (User)
+    │
+    ▼
+Request Scope
+    │
+    ▼
+JSP View
+    │
+    ▼
+EL Expression
+```
+
+---
+
+## Filter Flow
+
+```text
+Browser
+    │
+    ▼
+CharacterEncodingFilter
+    │
+    ▼
+UserFormServlet
+    │
+    ▼
+result.jsp
+```
+
+---
+
+## Listener Flow
+
+```text
+Tomcat Start
+      │
+      ▼
+Application Started
+
+Tomcat Stop
+      │
+      ▼
+Application Stopped
+```
+
+---
+
 ## Run
 
-Build:
+### Build
 
 ```bash
 mvn clean package
@@ -72,15 +158,17 @@ Generated WAR file:
 target/servlet-practice.war
 ```
 
-Deploy WAR file to Tomcat:
+### Deploy
 
-Copy `target/servlet-practice.war` to Tomcat `webapps` directory.
+Copy the generated WAR file to the Tomcat **webapps** directory.
 
-Access:
+### Access
 
 ```text
 http://localhost:8080/servlet-practice/hello
 ```
+
+---
 
 ## Result
 
@@ -99,6 +187,8 @@ Hello Servlet
 My first Servlet on Mac!
 ```
 
+---
+
 ### MVC Servlet
 
 Access:
@@ -113,27 +203,59 @@ Displays:
 Hello Peter
 ```
 
-## MVC Flow
+---
 
-Browser
-→ Servlet Controller
-→ Model (User)
-→ Request Scope (setAttribute)
-→ JSP View
-→ EL Expression
+### Filter
+
+Console Output:
+
+```text
+CharacterEncodingFilter executed.
+Before Servlet
+After Servlet
+```
+
+---
+
+### Listener
+
+Console Output:
+
+```text
+Application Started
+Application Stopped
+```
+
+---
 
 ## Form Handling
 
-### Flow
+### Request Flow
 
+```text
 Browser
-→ HTML Form (POST)
-→ Servlet Controller
-→ request.getParameter()
-→ Create User Object
-→ request.setAttribute()
-→ JSP View
-→ EL Expression
+    │
+    ▼
+HTML Form (POST)
+    │
+    ▼
+Servlet Controller
+    │
+    ▼
+request.getParameter()
+    │
+    ▼
+Create User Object
+    │
+    ▼
+request.setAttribute()
+    │
+    ▼
+JSP View
+    │
+    ▼
+EL Expression
+```
 
 ### Example
 
@@ -160,3 +282,21 @@ User information:
 Name: Peter
 Age: 42
 ```
+
+---
+
+## Learning Summary
+
+Through this project, I learned:
+
+- Java Servlet development
+- MVC architecture
+- JSP and EL
+- JavaBean
+- HTML Form handling
+- Request Scope
+- Filter
+- Listener
+- Maven build
+- WAR packaging
+- Apache Tomcat deployment
