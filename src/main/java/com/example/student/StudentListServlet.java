@@ -19,14 +19,19 @@ public class StudentListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Student> students = new ArrayList<>();
+        // List<Student> students = new ArrayList<>();
+        List<Student> students = (List<Student>) getServletContext().getAttribute("students");
 
-        students.add(new Student(1, "Peter", 42));
-        students.add(new Student(2, "Marina", 20));
-        students.add(new Student(3, "Mika", 25));
+        if (students == null) {
+            students = new ArrayList<>();
+            students.add(new Student(1, "Peter", 42));
+            students.add(new Student(2, "Marina", 20));
+            students.add(new Student(3, "Mika", 25));
+
+            getServletContext().setAttribute("students", students);
+        }
 
         request.setAttribute("students", students);
-
         request.getRequestDispatcher("/student/student-list.jsp")
                 .forward(request, response);
 

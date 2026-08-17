@@ -1,6 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
+        <a href="${pageContext.request.contextPath}/student/student-form.jsp">
+            Add Student
+        </a>
+
+        <br>
         <table border="1">
             <tr>
                 <th>ID</th>

@@ -31,6 +31,9 @@ It includes MVC architecture, form handling, JavaBean, Filter, Listener, and WAR
 - JavaBean (User / Student)
 - Request Scope
 - Student Management (List)
+- Student Add
+- Application Scope
+- POST Redirect GET (PRG)
 
 ### JSP
 
@@ -74,7 +77,8 @@ servlet-practice
         │           ├── UserServlet.java
         │           ├── UserFormServlet.java
         │           ├── student
-        │           │   └── StudentListServlet.java
+        │           │   ├── StudentListServlet.java
+        │           │   └── StudentAddServlet.java
         │           ├── filter
         │           │   └── CharacterEncodingFilter.java
         │           ├── listener
@@ -90,6 +94,7 @@ servlet-practice
             ├── WEB-INF
             │   └── web.xml
             └── student
+                ├── student-form.jsp
                 └── student-list.jsp
 ```
 
@@ -142,6 +147,31 @@ student-list.jsp
     │
     ▼
 HTML Table
+```
+
+```text
+Student Add Flow
+
+Browser
+    │
+    ▼
+student-form.jsp
+    │
+POST
+    ▼
+StudentAddServlet
+    │
+    ▼
+Application Scope
+    │
+    ▼
+sendRedirect()
+    │
+    ▼
+StudentListServlet
+    │
+    ▼
+student-list.jsp
 ```
 
 ---
@@ -261,6 +291,8 @@ Application Started
 Application Stopped
 ```
 
+---
+
 ### Student List
 
 Access:
@@ -269,7 +301,7 @@ Access:
 http://localhost:8080/servlet-practice/students
 ```
 
-Displays:
+Example:
 
 ```text
 ID   NAME      AGE
@@ -277,6 +309,7 @@ ID   NAME      AGE
 1    Peter     42
 2    Marina    20
 3    Mika      25
+...
 ```
 
 ---
@@ -336,6 +369,20 @@ Name: Peter
 Age: 42
 ```
 
+### Student Add
+
+Access:
+
+```text
+http://localhost:8080/servlet-practice/student/student-form.jsp
+```
+
+Result:
+
+```text
+After submitting the form, the new student is added to the student list.
+```
+
 ---
 
 ## Learning Summary
@@ -355,6 +402,10 @@ Through this project, I learned:
 - Maven build
 - WAR packaging
 - Apache Tomcat deployment
+- Application Scope
+- ServletContext
+- Redirect
+- PRG (Post Redirect Get)
 
 ---
 
