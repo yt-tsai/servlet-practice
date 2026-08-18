@@ -11,6 +11,7 @@
                 <th>ID</th>
                 <th>NAME</th>
                 <th>AGE</th>
+                <th>ACTION</th>
             </tr>
 
             <c:forEach items="${students}" var="student">
@@ -18,6 +19,9 @@
                     <td>${student.id}</td>
                     <td>${student.name}</td>
                     <td>${student.age}</td>
+                    <td> <a href="${pageContext.request.contextPath}/students/edit?id=${student.id}">
+                            Edit</a>
+                    </td>
                 </tr>
             </c:forEach>
 
