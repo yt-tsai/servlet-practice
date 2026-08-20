@@ -19,9 +19,15 @@
                     <td>${student.id}</td>
                     <td>${student.name}</td>
                     <td>${student.age}</td>
-                    <td> <a href="${pageContext.request.contextPath}/students/edit?id=${student.id}">
+
+                    <td>
+                        <a href="${pageContext.request.contextPath}/students/edit?id=${student.id}">
                             Edit</a>
+
+                        <a href="${pageContext.request.contextPath}/students/delete?id=${student.id}">
+                            Delete</a>
                     </td>
+
                 </tr>
             </c:forEach>
 

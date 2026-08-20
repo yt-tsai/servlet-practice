@@ -30,8 +30,11 @@ It includes MVC architecture, form handling, JavaBean, Filter, Listener, and WAR
 - StudentListServlet
 - JavaBean (User / Student)
 - Request Scope
-- Student Management (List)
+- Student Management (CRUD)
+- Student List
 - Student Add
+- Student Edit / Update
+- Student Delete
 - Application Scope
 - POST Redirect GET (PRG)
 
@@ -78,7 +81,11 @@ servlet-practice
         │           ├── UserFormServlet.java
         │           ├── student
         │           │   ├── StudentListServlet.java
-        │           │   └── StudentAddServlet.java
+        │           │   ├── StudentAddServlet.java
+        │           │   ├── StudentEditServlet.java
+        │           │   ├── StudentUpdateServlet.java
+        │           │   └── StudentDeleteServlet.java
+        │           │
         │           ├── filter
         │           │   └── CharacterEncodingFilter.java
         │           ├── listener
@@ -95,6 +102,7 @@ servlet-practice
             │   └── web.xml
             └── student
                 ├── student-form.jsp
+                ├── student-edit.jsp
                 └── student-list.jsp
 ```
 
@@ -172,6 +180,63 @@ StudentListServlet
     │
     ▼
 student-list.jsp
+```
+
+```text
+Student Update Flow
+
+Browser
+    │
+    ▼
+student-list.jsp
+    │
+GET /students/edit?id=...
+    │
+    ▼
+StudentEditServlet
+    │
+    ▼
+student-edit.jsp
+    │
+POST /students/update
+    │
+    ▼
+StudentUpdateServlet
+    │
+    ▼
+Application Scope
+    │
+    ▼
+sendRedirect()
+    │
+    ▼
+GET /students
+```
+
+```text
+Student Delete Flow
+
+Browser
+    │
+    ▼
+student-list.jsp
+    │
+GET /students/delete?id=...
+    │
+    ▼
+StudentDeleteServlet
+    │
+    ▼
+Application Scope
+    │
+    ▼
+removeIf()
+    │
+    ▼
+sendRedirect()
+    │
+    ▼
+GET /students
 ```
 
 ---
@@ -406,6 +471,8 @@ Through this project, I learned:
 - ServletContext
 - Redirect
 - PRG (Post Redirect Get)
+- CRUD operations
+- Basic Lambda Expression with `removeIf()`
 
 ---
 
